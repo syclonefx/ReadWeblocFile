@@ -17,11 +17,14 @@ struct ContentView: View {
     }
     .padding()
     .onAppear {
-      readFile()
+      print("Text webloc")
+      readTextFile()
+      print("Binary webloc")
+      readBinaryFile()
     }
   }
   
-  func readFile() {
+  func readBinaryFile() {
     if let path = Bundle.main.path(forResource: "link", ofType: "webloc") {
       print("path: \(path)")
       
@@ -35,9 +38,20 @@ struct ContentView: View {
         }
       }
     }
-    
-    
   }
+  
+  func readTextFile() {
+    if let path = Bundle.main.path(forResource: "link2", ofType: "webloc") {
+      print("path: \(path)")
+      do {
+        let data = try String(contentsOfFile: path)
+        print(data)
+      } catch {
+        print("error: \(error.localizedDescription)")
+      }
+    }
+  }
+  
 }
 
 #Preview {
